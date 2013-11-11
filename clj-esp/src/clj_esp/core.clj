@@ -37,6 +37,18 @@
 (def large-order-statement
   "SELECT * FROM MarketDataEvent(size > 1000)")
 
+(def average-order-value-statement
+  (str "SELECT symbol, avg(price * size) as asize FROM "
+       "MarketDataEvent.win:time(5 sec) group by symbol "
+       "output last every 1 seconds"))
+
+(defn average-order-value-handler
+  [new-events]
+  (doseq [e new-events]
+    (println (str "Average order value for " (.get e "symbol")
+                  ": " (format "%.2f" (.get e "asize")))))
+  )
+
 (defn large-order-handler
   [new-events]
   (let [event (first new-events)
