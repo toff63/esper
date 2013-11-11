@@ -13,7 +13,6 @@ public class EsperEngine {
 		Configuration config = new Configuration();
 		config.addEventTypeAutoName("net.francesbagual.github.esper");
 		epService = EPServiceProviderManager.getDefaultProvider(config);
-		epService = EPServiceProviderManager.getDefaultProvider();
 		registerListeners();
 	}
 
