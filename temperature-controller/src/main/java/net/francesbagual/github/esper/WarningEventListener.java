@@ -4,9 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.espertech.esper.client.EventBean;
-import com.espertech.esper.client.UpdateListener;
 
-public class WarningEventListener implements UpdateListener {
+public class WarningEventListener implements UpdateListenerWithExpression {
 
 	Logger log = LoggerFactory.getLogger(WarningEventListener.class);
 	

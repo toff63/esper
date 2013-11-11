@@ -4,6 +4,7 @@ import com.espertech.esper.client.Configuration;
 import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
+import com.espertech.esper.client.UpdateListener;
 
 public class EsperEngine {
 
@@ -13,18 +14,17 @@ public class EsperEngine {
 		Configuration config = new Configuration();
 		config.addEventTypeAutoName("net.francesbagual.github.esper");
 		epService = EPServiceProviderManager.getDefaultProvider(config);
-		registerMonitoring();
-		registerWarnings();
+		registerListeners();
+
 	}
 
-	private void registerWarnings() {
-		WarningEventListener listener = new WarningEventListener();
-		EPStatement statement = epService.getEPAdministrator().createEPL(listener.getExpression());
-		statement.addListener(listener);
+	private void registerListeners() {
+		registerListener(new MonitorEventListener());
+		registerListener(new WarningEventListener());
+		registerListener(new ErrorEventListener());
 	}
 
-	private void registerMonitoring() {
-		MonitorEventListener listener = new MonitorEventListener();
+	private void registerListener(UpdateListenerWithExpression listener){
 		EPStatement statement = epService.getEPAdministrator().createEPL(listener.getExpression());
 		statement.addListener(listener);
 	}

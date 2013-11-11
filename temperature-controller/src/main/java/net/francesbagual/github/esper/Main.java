@@ -11,6 +11,14 @@ public class Main {
 		EsperEngine engine = new EsperEngine();
 		engine.start();
 		generateTemperatureEvents(engine.getEpService().getEPRuntime());
+		generateErrors(engine.getEpService().getEPRuntime());
+	}
+
+	private static void generateErrors(EPRuntime runtine) {
+		runtine.sendEvent(new TemperatureEvent(101));
+		runtine.sendEvent(new TemperatureEvent(110));
+		runtine.sendEvent(new TemperatureEvent(115));
+		runtine.sendEvent(new TemperatureEvent(200));
 	}
 
 	private static void generateTemperatureEvents(EPRuntime runtine) {
