@@ -15,11 +15,11 @@ public class Main {
 
 	private static void generateTemperatureEvents(EPRuntime runtine) {
 		Random r = new Random();
-		for(int i = 0; i< 100; i++) sendEventAndWait(runtine, r);
+		for(int i = 0; i< 50; i++) sendEventAndWait(runtine, r);
 	}
 
 	private static void sendEventAndWait(EPRuntime runtine, Random r) {
-		runtine.sendEvent(new TemperatureEvent(r.nextInt(50)));
+		runtine.sendEvent(new TemperatureEvent(r.nextInt(600)));
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

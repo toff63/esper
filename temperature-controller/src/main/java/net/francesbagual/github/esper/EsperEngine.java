@@ -18,9 +18,9 @@ public class EsperEngine {
 	}
 
 	private void registerWarnings() {
-//		WarningEventListener listener = new WarningEventListener();
-//		EPStatement statement = epService.getEPAdministrator().createEPL(listener.getExpression());
-//		statement.addListener(listener);
+		WarningEventListener listener = new WarningEventListener();
+		EPStatement statement = epService.getEPAdministrator().createEPL(listener.getExpression());
+		statement.addListener(listener);
 	}
 
 	private void registerMonitoring() {
